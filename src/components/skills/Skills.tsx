@@ -72,7 +72,7 @@ const SkillGroup: React.FC<{
 
 export const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-20 relative">
+    <section id="skills" className="py-20 relative scroll-mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="spring-up" duration={800}>
           <div className="mb-12 max-w-3xl">

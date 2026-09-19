@@ -44,9 +44,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    if (href === '#hero' || href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.pushState(null, '', '#hero');
+      setActiveSection('hero');
+      return;
+    }
+
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navOffset = 76;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+      window.history.pushState(null, '', href);
+      setActiveSection(targetId);
+    }
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-reveal ${
         isScrolled
           ? 'bg-surface-950/85 backdrop-blur-2xl border-b border-purple-500/25 shadow-xl shadow-purple-950/40 py-2.5'
           : 'bg-transparent py-4'
@@ -56,7 +83,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
         {/* Brand */}
         <a
           href="#hero"
-          className="group flex items-center gap-3 text-white hover:text-cyan-200 transition-colors"
+          onClick={(e) => handleNavClick(e, '#hero')}
+          className="group flex items-center gap-3 text-white hover:text-cyan-200 transition-colors cursor-pointer"
         >
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 border border-pink-400/40 flex items-center justify-center text-white shadow-md shadow-pink-500/30 group-hover:scale-105 group-hover:shadow-cyan-400/40 transition-all duration-300">
             <Terminal className="w-4 h-4" />
@@ -78,7 +106,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold font-sans transition-all duration-300 ${
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold font-sans transition-all duration-300 cursor-pointer ${
                   isActive
                     ? 'text-white'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -97,14 +126,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
         <div className="hidden sm:flex items-center gap-3">
           <button
             onClick={onResumeClick}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono font-semibold text-slate-200 hover:text-white bg-surface-900 hover:bg-surface-850 border border-purple-500/35 hover:border-cyan-400/50 transition-all duration-300 shadow-sm"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono font-semibold text-slate-200 hover:text-white bg-surface-900 hover:bg-surface-850 border border-purple-500/35 hover:border-cyan-400/50 transition-all duration-300 shadow-sm cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5 text-pink-400" />
             <span>Resume</span>
           </button>
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-400 hover:to-cyan-400 font-heading transition-all duration-300 shadow-md shadow-pink-500/25 active:scale-95"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-400 hover:to-cyan-400 font-heading transition-all duration-300 shadow-md shadow-pink-500/25 active:scale-95 cursor-pointer"
           >
             <Send className="w-3 h-3" />
             <span>Contact</span>
@@ -115,13 +145,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
         <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={onResumeClick}
-            className="px-3 py-1 text-xs font-mono font-medium text-pink-200 bg-surface-850 border border-pink-500/30 rounded-lg"
+            className="px-3 py-1 text-xs font-mono font-medium text-pink-200 bg-surface-850 border border-pink-500/30 rounded-lg cursor-pointer"
           >
             Resume
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-300 hover:text-white focus:outline-none"
+            className="p-2 text-slate-300 hover:text-white focus:outline-none cursor-pointer"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-pink-400" /> : <Menu className="w-5 h-5" />}
@@ -137,8 +167,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:text-white hover:bg-pink-500/10 border border-purple-500/20"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:text-white hover:bg-pink-500/10 border border-purple-500/20 cursor-pointer"
               >
                 {link.name}
               </a>
@@ -150,14 +180,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
                 setMobileMenuOpen(false);
                 onResumeClick();
               }}
-              className="flex-1 py-2 text-center text-xs font-mono font-semibold text-slate-200 bg-surface-850 border border-purple-500/30 rounded-xl"
+              className="flex-1 py-2 text-center text-xs font-mono font-semibold text-slate-200 bg-surface-850 border border-purple-500/30 rounded-xl cursor-pointer"
             >
               View Resume
             </button>
             <a
               href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex-1 py-2 text-center text-xs font-bold text-white bg-gradient-to-r from-pink-500 to-cyan-500 rounded-xl font-heading"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="flex-1 py-2 text-center text-xs font-bold text-white bg-gradient-to-r from-pink-500 to-cyan-500 rounded-xl font-heading cursor-pointer"
             >
               Contact Me
             </a>

@@ -17,16 +17,32 @@ export const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === '#hero' || href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navOffset = 76;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      window.history.pushState(null, '', href);
+    }
+  };
+
   return (
     <footer className="border-t border-purple-500/25 bg-surface-950/90 relative overflow-hidden">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-r from-pink-500/10 via-purple-500/15 to-cyan-500/10 blur-2xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-32 bg-gradient-to-b from-purple-500/10 via-pink-500/5 to-transparent blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 relative z-10">
-        <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-sm">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+          <div className="space-y-1 text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-sm shadow-pink-500/30">
                 <Terminal className="w-3.5 h-3.5" />
               </div>
               <span className="font-bold text-white text-base tracking-tight font-heading">
@@ -42,7 +58,8 @@ export const Footer: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-medium text-slate-300 hover:text-pink-300 transition-colors duration-200 link-underline"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-xs font-medium text-slate-300 hover:text-pink-300 transition-colors duration-200 link-underline cursor-pointer"
               >
                 {link.name}
               </a>

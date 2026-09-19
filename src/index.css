@@ -4,8 +4,13 @@
 
 @layer base {
   * { border-color: rgba(168, 85, 247, 0.2); }
-  html { scroll-behavior: smooth; color-scheme: dark; }
+  html { 
+    scroll-behavior: smooth; 
+    color-scheme: dark; 
+    scroll-padding-top: 5.5rem;
+  }
   body {
+    overflow-x: clip;
     /* NOT black! A rich, multi-colored deep cosmic gradient canvas with lively mesh accents */
     background-color: #0b0d22;
     background-image: 
@@ -290,7 +295,7 @@
 
 @keyframes navReveal {
   from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: none; }
 }
 .nav-reveal {
   animation: navReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;

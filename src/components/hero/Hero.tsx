@@ -12,7 +12,7 @@ export const Hero: React.FC<HeroProps> = ({ onResumeClick: _onResumeClick }) => 
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20 overflow-hidden"
+      className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20 overflow-hidden scroll-mt-24"
     >
       {/* Dynamic ambient color glows */}
       <div className="absolute top-0 left-1/4 w-[650px] h-[450px] bg-pink-500/15 rounded-full blur-[140px] pointer-events-none" />
@@ -59,7 +59,21 @@ export const Hero: React.FC<HeroProps> = ({ onResumeClick: _onResumeClick }) => 
               className="hero-anim flex flex-wrap items-center gap-3.5 pt-1"
               style={{ animationDelay: '240ms' }}
             >
-              <a href="#projects" className="btn-hero-primary group">
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const targetEl = document.getElementById('projects');
+                  if (targetEl) {
+                    const navOffset = 76;
+                    const elementPosition = targetEl.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    window.history.pushState(null, '', '#projects');
+                  }
+                }}
+                className="btn-hero-primary group cursor-pointer"
+              >
                 <span>Explore My Work</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </a>

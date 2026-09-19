@@ -23,7 +23,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section id="contact" className="py-20 relative scroll-mt-24">
       <div className="absolute bottom-0 left-1/3 w-[600px] h-[400px] bg-gradient-to-tr from-pink-500/20 via-purple-600/20 to-cyan-500/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

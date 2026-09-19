@@ -24,12 +24,12 @@ export function App() {
   }, []);
 
   return (
-    <div className={`relative min-h-screen bg-surface-950 text-slate-100 font-sans selection:bg-pink-500/30 selection:text-pink-200 overflow-x-hidden ${loaded ? 'page-reveal' : 'opacity-0'}`}>
+    <div className={`relative min-h-screen bg-surface-950 text-slate-100 font-sans selection:bg-pink-500/30 selection:text-pink-200 overflow-x-clip ${loaded ? 'page-reveal' : 'opacity-0'}`}>
       {/* Dynamic colorful aurora glowing orbs (pink, cyan, violet, emerald, amber) */}
       <AuroraBackground />
 
       {/* Noise texture overlay */}
-      <div className="noise-overlay" />
+      <div className="noise-overlay pointer-events-none" />
 
       {/* Custom cursor (desktop only) */}
       <MagneticCursor />
@@ -42,9 +42,7 @@ export function App() {
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] radial-glow pointer-events-none -z-10" />
 
       {/* Navigation */}
-      <div className="nav-reveal">
-        <Navbar onResumeClick={() => setIsResumeOpen(true)} />
-      </div>
+      <Navbar onResumeClick={() => setIsResumeOpen(true)} />
 
       {/* Main Page Content */}
       <main className="relative z-10 space-y-12 sm:space-y-16">
