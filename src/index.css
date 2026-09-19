@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { border-color: rgba(168, 85, 247, 0.2); }
+  html { scroll-behavior: smooth; color-scheme: dark; }
+  body {
+    /* NOT black! A rich, multi-colored deep cosmic gradient canvas with lively mesh accents */
+    background-color: #0b0d22;
+    background-image: 
+      radial-gradient(circle at 10% 15%, rgba(236, 72, 153, 0.22) 0%, transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 50% 45%, rgba(139, 92, 246, 0.2) 0%, transparent 55%),
+      radial-gradient(circle at 15% 75%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.2) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible {
+    outline: 2px solid #ec4899;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar { width: 7px; height: 7px; }
+  ::-webkit-scrollbar-track { background: #0c0e24; }
+  ::-webkit-scrollbar-thumb { 
+    background: linear-gradient(to bottom, #ec4899, #8b5cf6, #06b6d4); 
+    border-radius: 4px; 
+  }
+  ::-webkit-scrollbar-thumb:hover { 
+    background: linear-gradient(to bottom, #f43f5e, #a855f7, #22d3ee); 
+  }
+}
+
+@layer components {
+  /* ── Vibrant Glassmorphic Cards ── */
+  .glass-card {
+    background: rgba(19, 23, 56, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.5), 0 0 20px -8px rgba(139, 92, 246, 0.15);
+  }
+  .glass-card-hover { 
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(236, 72, 153, 0.45);
+    background: rgba(26, 31, 74, 0.85);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -4px rgba(236, 72, 153, 0.3), 0 0 15px -4px rgba(6, 182, 212, 0.25);
+  }
+
+  /* ── Primary Hero Button — Explosive Rainbow Neon Gradient ── */
+  .btn-hero-primary {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #06b6d4 100%);
+    background-size: 200% 200%;
+    box-shadow: 0 0 25px -4px rgba(236, 72, 153, 0.5), 0 0 45px -10px rgba(6, 182, 212, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .btn-hero-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
+    background-size: 200% 200%;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-hero-primary:hover {
+    background-position: 100% 0;
+    box-shadow: 0 0 35px -2px rgba(236, 72, 153, 0.7), 0 0 60px -8px rgba(6, 182, 212, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-hero-primary:hover::before { opacity: 1; }
+  .btn-hero-primary:active {
+    transform: scale(0.97) translateY(0);
+    box-shadow: 0 0 15px -4px rgba(236, 72, 153, 0.4);
+  }
+
+  /* ── Secondary Hero Button — Cyber Cyan Neon Glow ── */
+  .btn-hero-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-300;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: #e2e8f0;
+    background: rgba(19, 23, 56, 0.6);
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    box-shadow: 0 0 15px -4px rgba(6, 182, 212, 0.25), inset 0 0 15px -8px rgba(6, 182, 212, 0.15);
+    backdrop-filter: blur(10px);
+  }
+  .btn-hero-secondary:hover {
+    color: #ffffff;
+    border-color: #22d3ee;
+    background: rgba(6, 182, 212, 0.15);
+    box-shadow: 0 0 30px -4px rgba(6, 182, 212, 0.5), inset 0 0 20px -5px rgba(6, 182, 212, 0.3);
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-hero-secondary:active { transform: scale(0.97); }
+
+  /* ── Skill Pill — Colorful Energetic Badges ── */
+  .skill-pill {
+    @apply inline-flex items-center px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-300 cursor-default shadow-sm;
+    color: #e2e8f0;
+    background: rgba(26, 31, 74, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(8px);
+  }
+  .skill-pill:hover {
+    color: #ffffff;
+    border-color: #ec4899;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(6, 182, 212, 0.25) 100%);
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 6px 20px -4px rgba(236, 72, 153, 0.4), 0 0 0 1px rgba(236, 72, 153, 0.3);
+  }
+
+  /* ── Generic Primary ── */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
+    box-shadow: 0 0 20px -4px rgba(236, 72, 153, 0.45);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 30px -4px rgba(236, 72, 153, 0.65), 0 0 45px -8px rgba(6, 182, 212, 0.5);
+    transform: translateY(-2px);
+  }
+  .btn-primary:active { transform: scale(0.97); }
+
+  /* ── Generic Secondary ── */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: #cbd5e1;
+    background: rgba(26, 31, 74, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+  }
+  .btn-secondary:hover {
+    color: #fff;
+    border-color: #22d3ee;
+    background: rgba(6, 182, 212, 0.15);
+    box-shadow: 0 0 20px -4px rgba(6, 182, 212, 0.3);
+  }
+
+  /* ── Animated Rainbow Underline ── */
+  .link-underline { position: relative; text-decoration: none; }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #10b981);
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after { width: 100%; }
+
+  /* ── Project Card Colorful Glowing Hover ── */
+  .project-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(19, 23, 56, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    backdrop-filter: blur(14px);
+  }
+  .project-card:hover {
+    border-color: rgba(236, 72, 153, 0.55);
+    box-shadow: 0 16px 45px -12px rgba(236, 72, 153, 0.25), 0 0 35px -8px rgba(6, 182, 212, 0.3), 0 0 0 1px rgba(236, 72, 153, 0.25);
+    background: rgba(26, 31, 74, 0.85);
+    transform: translateY(-4px);
+  }
+
+  /* ── Vivid Category Badges ── */
+  .badge-purple {
+    background: rgba(168, 85, 247, 0.2);
+    color: #e9d5ff;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 12px -3px rgba(168, 85, 247, 0.4);
+  }
+  .badge-cyan {
+    background: rgba(6, 182, 212, 0.2);
+    color: #a5f3fc;
+    border: 1px solid rgba(6, 182, 212, 0.45);
+    box-shadow: 0 0 12px -3px rgba(6, 182, 212, 0.4);
+  }
+  .badge-green {
+    background: rgba(16, 185, 129, 0.2);
+    color: #a7f3d0;
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    box-shadow: 0 0 12px -3px rgba(16, 185, 129, 0.4);
+  }
+  .badge-amber {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fde68a;
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    box-shadow: 0 0 12px -3px rgba(245, 158, 11, 0.4);
+  }
+  .badge-pink {
+    background: rgba(236, 72, 153, 0.2);
+    color: #fbcfe8;
+    border: 1px solid rgba(236, 72, 153, 0.45);
+    box-shadow: 0 0 12px -3px rgba(236, 72, 153, 0.4);
+  }
+
+  /* ── Card Top Accents ── */
+  .card-accent-purple { background: linear-gradient(90deg, #ec4899, #8b5cf6); }
+  .card-accent-cyan { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+  .card-accent-green { background: linear-gradient(90deg, #10b981, #06b6d4); }
+  .card-accent-amber { background: linear-gradient(90deg, #f59e0b, #ec4899); }
+}
+
+/* ════════════════════════════════════════
+   Background Grid & Atmosphere
+   ════════════════════════════════════════ */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
+}
+.radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.25) 0%, rgba(139, 92, 246, 0.2) 30%, rgba(6, 182, 212, 0.15) 60%, transparent 80%);
+}
+.hero-visual-grid {
+  background-size: 24px 24px;
+  background-image:
+    linear-gradient(to right, rgba(236, 72, 153, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
+}
+
+/* ════════════════════════════════════════
+   Hero Animations & Multi-Color Text
+   ════════════════════════════════════════ */
+@keyframes heroSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.hero-anim {
+  opacity: 0;
+  animation: heroSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Explosive Multi-Color Rainbow Text Gradient */
+.text-gradient-brand {
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 22%, #a855f7 45%, #06b6d4 70%, #10b981 90%, #facc15 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 250% auto;
+  animation: gradientShift 5s ease infinite;
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+/* ════════════════════════════════════════
+   Floating & Cursor
+   ════════════════════════════════════════ */
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes heroFloatReverse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+.hero-float { animation: heroFloat 5s ease-in-out infinite; }
+.hero-float-reverse { animation: heroFloatReverse 6s ease-in-out infinite; }
+
+.cursor-blink { animation: cursorBlink 1s step-end infinite; }
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ════════════════════════════════════════
+   Page load
+   ════════════════════════════════════════ */
+@keyframes pageReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.page-reveal { animation: pageReveal 0.5s ease-out forwards; }
+
+@keyframes navReveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.nav-reveal {
+  animation: navReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+/* ════════════════════════════════════════
+   Reduced motion
+   ════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-anim { opacity: 1; animation: none; }
+  .hero-float, .hero-float-reverse { animation: none; }
+  .cursor-blink { animation: none; opacity: 1; }
+  .page-reveal { animation: none; opacity: 1; }
+  .nav-reveal { animation: none; opacity: 1; }
+  .text-gradient-brand { animation: none; }
+}
