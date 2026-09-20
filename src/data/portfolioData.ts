@@ -86,6 +86,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 'frosted-fine-cakes',
     title: 'Frosted & Fine Cakes',
     category: 'Web Application',
+    statusBadge: 'Completed • Live',
     description:
       'A responsive website built for a made-to-order eggless bakery, with a clean product browsing experience and an order/customization flow.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
@@ -102,6 +103,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 'careeros',
     title: 'CareerOS',
     category: 'Backend & Systems',
+    statusBadge: 'In Progress • Still Working On It',
     description:
       'A career-focused application exploring backend architecture, APIs, authentication, and structured data management.',
     technologies: ['FastAPI', 'PostgreSQL', 'Alembic'],
@@ -116,6 +118,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 'fintrack-ai',
     title: 'FinTrack AI',
     category: 'FinTech & AI',
+    statusBadge: 'Completed • Live',
     description:
       'A smart personal finance and expense tracking web application with Supabase cloud database, AI-powered spending insights, and PDF export.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Supabase', 'Cloudflare AI'],
@@ -132,6 +135,7 @@ export const FEATURED_PROJECTS: Project[] = [
     id: 'scorepulse',
     title: 'ScorePulse',
     category: 'Fullstack Web App',
+    statusBadge: 'In Progress • Still Working On It',
     description:
       'A sports score application built with a modern Next.js architecture and a provider-based approach to sports data.',
     technologies: ['Next.js', 'React', 'TypeScript'],

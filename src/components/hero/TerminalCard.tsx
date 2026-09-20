@@ -96,10 +96,10 @@ export const TerminalCard: React.FC = () => {
       filename: 'projects.json',
       rawText: `{
   "featured": [
-    { "name": "FinTrack AI", "tech": "HTML5, CSS3, JS, Supabase", "live": "fintrack-ai.pages.dev" },
-    { "name": "CareerOS", "tech": "FastAPI, PostgreSQL, Alembic" },
-    { "name": "ScorePulse", "tech": "Next.js, React, TypeScript" },
-    { "name": "Frosted & Fine Cakes", "tech": "HTML, CSS, JS", "live": "frosted-and-fine-cakes.netlify.app" }
+    { "name": "FinTrack AI", "tech": "HTML5, CSS3, JS, Supabase", "status": "Live" },
+    { "name": "Frosted & Fine Cakes", "tech": "HTML, CSS, JS", "status": "Live" },
+    { "name": "CareerOS", "tech": "FastAPI, PostgreSQL, Alembic", "status": "In Progress" },
+    { "name": "ScorePulse", "tech": "Next.js, React, TypeScript", "status": "In Progress" }
   ]
 }`,
       content: (
@@ -112,11 +112,11 @@ export const TerminalCard: React.FC = () => {
           </div>
           <div className="pl-4">
             <span className="text-purple-400">"CareerOS"</span>:{' '}
-            <span className="text-emerald-300">"FastAPI + PostgreSQL + Alembic"</span>,
+            <span className="text-amber-300">"FastAPI + PostgreSQL [STILL WORKING ON IT]"</span>,
           </div>
           <div className="pl-4">
             <span className="text-purple-400">"ScorePulse"</span>:{' '}
-            <span className="text-emerald-300">"Next.js Provider Architecture"</span>,
+            <span className="text-amber-300">"Next.js Architecture [STILL WORKING ON IT]"</span>,
           </div>
           <div className="pl-4">
             <span className="text-purple-400">"Frosted & Fine Cakes"</span>:{' '}

@@ -138,8 +138,19 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             <div className="space-y-3">
               {FEATURED_PROJECTS.map((p) => (
                 <div key={p.id} className="bg-surface-850 p-4 rounded-lg border border-[#262626]/60">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                    <span className="font-semibold text-[#a3a3a3]">{p.title}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-[#a3a3a3]">{p.title}</span>
+                      {p.statusBadge && (
+                        <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
+                          p.liveUrl
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25'
+                            : 'bg-amber-500/10 text-amber-300 border-amber-500/25'
+                        }`}>
+                          {p.statusBadge}
+                        </span>
+                      )}
+                    </div>
                     <span className="text-xs font-mono text-[#737373]">[{p.technologies.join(', ')}]</span>
                   </div>
                   <p className="text-xs text-[#737373] mt-1">{p.description}</p>
