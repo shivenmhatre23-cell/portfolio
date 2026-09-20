@@ -96,7 +96,7 @@ export const TerminalCard: React.FC = () => {
       filename: 'projects.json',
       rawText: `{
   "featured": [
-    { "name": "FinTrack AI", "tech": "React, TanStack Start, Tailwind", "live": "fintrack-ai.pages.dev" },
+    { "name": "FinTrack AI", "tech": "HTML5, CSS3, JS, Supabase", "live": "fintrack-ai.pages.dev" },
     { "name": "CareerOS", "tech": "FastAPI, PostgreSQL, Alembic" },
     { "name": "ScorePulse", "tech": "Next.js, React, TypeScript" },
     { "name": "Frosted & Fine Cakes", "tech": "HTML, CSS, JS", "live": "frosted-and-fine-cakes.netlify.app" }
@@ -108,7 +108,7 @@ export const TerminalCard: React.FC = () => {
           <div className="text-slate-400">&#123;</div>
           <div className="pl-4">
             <span className="text-purple-400">"FinTrack AI"</span>:{' '}
-            <span className="text-emerald-300">"React + TanStack + AI Exploration [LIVE]"</span>,
+            <span className="text-emerald-300">"HTML5 + JS + Supabase + Cloudflare AI [LIVE]"</span>,
           </div>
           <div className="pl-4">
             <span className="text-purple-400">"CareerOS"</span>:{' '}

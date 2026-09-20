@@ -15,7 +15,7 @@ Built with **React 19**, **TypeScript**, **Tailwind CSS**, and **Vite**.
   - **About Me**: Concise story highlighting computer science foundations at IIIT Bhubaneswar and core engineering values.
   - **Technical Skills**: Color-coded categorized skill matrices across Programming Languages, Web Dev, Backend & Data, and Developer Tools.
   - **Featured Projects**:
-    - **FinTrack AI** (React, TanStack Start, Tailwind CSS) — [Live Demo](https://fintrack-ai.pages.dev/)
+    - **FinTrack AI** (HTML5, CSS3, JavaScript, Supabase) — [Live Demo](https://fintrack-ai.pages.dev/)
     - **CareerOS** (FastAPI, PostgreSQL, Alembic backend architecture)
     - **ScorePulse** (Next.js sports-data provider architecture & fixtures)
     - **Frosted & Fine Cakes** (Responsive bakery website with live Netlify deployment)

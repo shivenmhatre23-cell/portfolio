@@ -115,15 +115,15 @@ export const FEATURED_PROJECTS: Project[] = [
   {
     id: 'fintrack-ai',
     title: 'FinTrack AI',
-    category: 'AI & Fullstack',
+    category: 'FinTech & AI',
     description:
-      'A modern financial tracking project exploring an AI-assisted approach to personal finance.',
-    technologies: ['React', 'TanStack Start', 'Tailwind CSS'],
+      'A smart personal finance and expense tracking web application with Supabase cloud database, AI-powered spending insights, and PDF export.',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Supabase', 'Cloudflare AI'],
     keyFeatures: [
-      'Full-stack architecture with TanStack Start and modern React',
-      'Interactive ledger for transaction logging and budget visualization',
-      'Exploration of AI heuristics for automated expense tagging',
-      'Responsive dark-mode UI styled with custom Tailwind CSS tokens',
+      'Responsive finance dashboard built with semantic HTML5, CSS3, and vanilla JavaScript',
+      'Cloud database and authentication powered by Supabase with local storage fallback',
+      'AI-assisted spending analysis and personalized financial recommendations',
+      'Interactive budget controls, expense categorization, and PDF statement export',
     ],
     githubUrl: 'https://github.com/shivenmhatre23-cell/FinTrack-AI',
     liveUrl: 'https://fintrack-ai.pages.dev/',
