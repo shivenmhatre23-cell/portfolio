@@ -126,7 +126,7 @@ export const FEATURED_PROJECTS: Project[] = [
       'Responsive dark-mode UI styled with custom Tailwind CSS tokens',
     ],
     githubUrl: 'https://github.com/shivenmhatre23-cell/FinTrack-AI',
-    liveUrl: 'https://fintrack-ai.fintrack-ai.workers.dev/',
+    liveUrl: 'https://fintrack-ai.pages.dev/',
   },
   {
     id: 'scorepulse',

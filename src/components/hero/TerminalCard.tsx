@@ -96,7 +96,7 @@ export const TerminalCard: React.FC = () => {
       filename: 'projects.json',
       rawText: `{
   "featured": [
-    { "name": "FinTrack AI", "tech": "React, TanStack Start, Tailwind", "live": "fintrack-ai.fintrack-ai.workers.dev" },
+    { "name": "FinTrack AI", "tech": "React, TanStack Start, Tailwind", "live": "fintrack-ai.pages.dev" },
     { "name": "CareerOS", "tech": "FastAPI, PostgreSQL, Alembic" },
     { "name": "ScorePulse", "tech": "Next.js, React, TypeScript" },
     { "name": "Frosted & Fine Cakes", "tech": "HTML, CSS, JS", "live": "frosted-and-fine-cakes.netlify.app" }
