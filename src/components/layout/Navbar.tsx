@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Send, Terminal } from 'lucide-react';
 import { PERSONAL_INFO } from '../../data/portfolioData';
+import { Magnet } from '../effects/Magnet';
 
 interface NavbarProps {
   onResumeClick: () => void;
@@ -81,22 +82,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand */}
-        <a
-          href="#hero"
-          onClick={(e) => handleNavClick(e, '#hero')}
-          className="group flex items-center gap-3 text-white hover:text-cyan-200 transition-colors cursor-pointer"
-        >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 border border-pink-400/40 flex items-center justify-center text-white shadow-md shadow-pink-500/30 group-hover:scale-105 group-hover:shadow-cyan-400/40 transition-all duration-300">
-            <Terminal className="w-4 h-4" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-sm sm:text-base tracking-tight text-white font-heading flex items-center gap-2">
-              {PERSONAL_INFO.name}
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            </span>
-            <span className="text-[10px] font-mono text-cyan-300/80 leading-none">IIIT Bhubaneswar</span>
-          </div>
-        </a>
+        <Magnet magnetStrength={0.18}>
+          <a
+            href="#hero"
+            onClick={(e) => handleNavClick(e, '#hero')}
+            className="group flex items-center gap-3 text-white hover:text-cyan-200 transition-colors cursor-pointer"
+          >
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 border border-pink-400/40 flex items-center justify-center text-white shadow-md shadow-pink-500/30 group-hover:scale-105 group-hover:shadow-cyan-400/40 transition-all duration-300">
+              <Terminal className="w-4 h-4" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-sm sm:text-base tracking-tight text-white font-heading flex items-center gap-2">
+                {PERSONAL_INFO.name}
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              </span>
+              <span className="text-[10px] font-mono text-cyan-300/80 leading-none">IIIT Bhubaneswar</span>
+            </div>
+          </a>
+        </Magnet>
 
         {/* Desktop Navigation with colorful active pill */}
         <nav className="hidden md:flex items-center gap-1 bg-surface-900/80 p-1.5 rounded-full border border-purple-500/30 backdrop-blur-xl shadow-lg shadow-black/30">
@@ -124,21 +127,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onResumeClick }) => {
 
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center gap-3">
-          <button
-            onClick={onResumeClick}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono font-semibold text-slate-200 hover:text-white bg-surface-900 hover:bg-surface-850 border border-purple-500/35 hover:border-cyan-400/50 transition-all duration-300 shadow-sm cursor-pointer"
-          >
-            <FileText className="w-3.5 h-3.5 text-pink-400" />
-            <span>Resume</span>
-          </button>
-          <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, '#contact')}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-400 hover:to-cyan-400 font-heading transition-all duration-300 shadow-md shadow-pink-500/25 active:scale-95 cursor-pointer"
-          >
-            <Send className="w-3 h-3" />
-            <span>Contact</span>
-          </a>
+          <Magnet magnetStrength={0.22}>
+            <button
+              onClick={onResumeClick}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono font-semibold text-slate-200 hover:text-white bg-surface-900 hover:bg-surface-850 border border-purple-500/35 hover:border-cyan-400/50 transition-all duration-300 shadow-sm cursor-pointer"
+            >
+              <FileText className="w-3.5 h-3.5 text-pink-400" />
+              <span>Resume</span>
+            </button>
+          </Magnet>
+          <Magnet magnetStrength={0.22}>
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-400 hover:to-cyan-400 font-heading transition-all duration-300 shadow-md shadow-pink-500/25 active:scale-95 cursor-pointer"
+            >
+              <Send className="w-3 h-3" />
+              <span>Contact</span>
+            </a>
+          </Magnet>
         </div>
 
         {/* Mobile Menu Trigger */}

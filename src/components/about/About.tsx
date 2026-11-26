@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollReveal } from '../effects/ScrollReveal';
 import { MapPin, GraduationCap, Rocket, Lightbulb, Compass } from 'lucide-react';
+import { BlurText } from '../effects/BlurText';
 
 const TimelineItem: React.FC<{
   year: string;
@@ -45,7 +46,10 @@ export const About: React.FC = () => {
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white font-heading">
-              Curiosity Driven. <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-300 to-cyan-300">Grounded in Code.</span>
+              <BlurText text="Curiosity Driven." delay={50} />{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-300 to-cyan-300">
+                Grounded in Code.
+              </span>
             </h2>
           </div>
         </ScrollReveal>

@@ -3,6 +3,10 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { GithubIcon } from '../ui/Icons';
 import { PERSONAL_INFO } from '../../data/portfolioData';
 import { DeveloperVisual } from './DeveloperVisual';
+import { DecryptedText } from '../effects/DecryptedText';
+import { ShinyText } from '../effects/ShinyText';
+import { StarBorder } from '../effects/StarBorder';
+import { Magnet } from '../effects/Magnet';
 
 interface HeroProps {
   onResumeClick?: () => void;
@@ -32,7 +36,9 @@ export const Hero: React.FC<HeroProps> = ({ onResumeClick: _onResumeClick }) => 
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
               </span>
-              <span className="uppercase text-[11px]">Open to Learning • Building • Hackathons</span>
+              <span className="uppercase text-[11px]">
+                <ShinyText text="Open to Learning • Building • Hackathons" speed={3.5} />
+              </span>
               <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-pulse" />
             </div>
 
@@ -42,7 +48,13 @@ export const Hero: React.FC<HeroProps> = ({ onResumeClick: _onResumeClick }) => 
                 Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-pink-400 to-purple-400 font-extrabold">{PERSONAL_INFO.name}.</span>
               </h1>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.15] font-heading">
-                <span className="text-gradient-brand">I build things with code.</span>
+                <DecryptedText
+                  text="I build things with code."
+                  speed={40}
+                  className="text-gradient-brand"
+                  encryptedClassName="text-cyan-400 font-mono"
+                  animateOn="view"
+                />
               </h2>
             </div>
 
@@ -54,40 +66,46 @@ export const Hero: React.FC<HeroProps> = ({ onResumeClick: _onResumeClick }) => 
               1st-year CSE student at <strong className="text-cyan-300 font-medium">IIIT Bhubaneswar</strong> exploring software engineering, AI/ML, and turning ideas into real-world products.
             </p>
 
-            {/* CTAs with crazy vibrant buttons */}
+            {/* CTAs with Magnet and StarBorder */}
             <div
-              className="hero-anim flex flex-wrap items-center gap-3.5 pt-1"
+              className="hero-anim flex flex-wrap items-center gap-4 pt-1"
               style={{ animationDelay: '240ms' }}
             >
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const targetEl = document.getElementById('projects');
-                  if (targetEl) {
-                    const navOffset = 76;
-                    const elementPosition = targetEl.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                    window.history.pushState(null, '', '#projects');
-                  }
-                }}
-                className="btn-hero-primary group cursor-pointer"
-              >
-                <span>Explore My Work</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </a>
+              <Magnet magnetStrength={0.22}>
+                <StarBorder color="#ec4899" speed="3.5s">
+                  <a
+                    href="#projects"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const targetEl = document.getElementById('projects');
+                      if (targetEl) {
+                        const navOffset = 76;
+                        const elementPosition = targetEl.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        window.history.pushState(null, '', '#projects');
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-bold text-white tracking-wide transition-all duration-300 group cursor-pointer"
+                  >
+                    <span>Explore My Work</span>
+                    <ArrowRight className="w-4 h-4 text-cyan-300 group-hover:translate-x-1 transition-transform duration-200" />
+                  </a>
+                </StarBorder>
+              </Magnet>
 
-              <a
-                href={PERSONAL_INFO.socials.github}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-hero-secondary group"
-                aria-label="GitHub Profile"
-              >
-                <GithubIcon className="w-4 h-4 text-cyan-300 group-hover:text-white transition-colors duration-200" />
-                <span>View GitHub</span>
-              </a>
+              <Magnet magnetStrength={0.25}>
+                <a
+                  href={PERSONAL_INFO.socials.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-hero-secondary group"
+                  aria-label="GitHub Profile"
+                >
+                  <GithubIcon className="w-4 h-4 text-cyan-300 group-hover:text-white transition-colors duration-200" />
+                  <span>View GitHub</span>
+                </a>
+              </Magnet>
             </div>
 
             {/* Currently learning line with lively colorful chips */}
@@ -96,7 +114,7 @@ export const Hero: React.FC<HeroProps> = ({ onResumeClick: _onResumeClick }) => 
               style={{ animationDelay: '340ms' }}
             >
               <span className="text-purple-300 font-semibold flex items-center gap-1">
-                <span>⚡ Focus</span>
+                <ShinyText text="⚡ Focus" speed={3} />
                 <span>→</span>
               </span>
               <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/15 text-cyan-200 border border-cyan-400/30">C++</span>

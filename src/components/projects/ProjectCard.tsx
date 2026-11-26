@@ -2,6 +2,8 @@ import React from 'react';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import type { Project } from '../../data/types';
 import { GithubIcon } from '../ui/Icons';
+import { TiltedCard } from '../effects/TiltedCard';
+import { ShinyText } from '../effects/ShinyText';
 
 interface ProjectCardProps {
   project: Project;
@@ -156,111 +158,113 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   const config = PROJECT_CONFIG[project.id] || PROJECT_CONFIG['careeros'];
 
   return (
-    <div className={`project-card group rounded-2xl border border-purple-500/25 ${config.borderHover} overflow-hidden shadow-xl`}>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-        {/* Preview with colored top accent */}
-        <div className="lg:col-span-5 h-48 sm:h-56 lg:h-auto lg:min-h-[280px] relative overflow-hidden p-3.5">
-          <div className={`absolute top-0 left-0 right-0 h-1.5 ${config.accent}`} />
-          <AbstractPreview projectId={project.id} />
-          <div className="absolute top-6 left-6 text-xs font-mono font-bold text-white/40 tracking-widest">
-            {String(index + 1).padStart(2, '0')}
+    <TiltedCard scaleOnHover={1.015} rotateAmplitude={6} className="h-full">
+      <div className={`project-card group rounded-2xl border border-purple-500/25 ${config.borderHover} overflow-hidden shadow-xl h-full`}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          {/* Preview with colored top accent */}
+          <div className="lg:col-span-5 h-48 sm:h-56 lg:h-auto lg:min-h-[280px] relative overflow-hidden p-3.5">
+            <div className={`absolute top-0 left-0 right-0 h-1.5 ${config.accent}`} />
+            <AbstractPreview projectId={project.id} />
+            <div className="absolute top-6 left-6 text-xs font-mono font-bold text-white/40 tracking-widest">
+              {String(index + 1).padStart(2, '0')}
+            </div>
           </div>
-        </div>
 
-        <div className="lg:col-span-7 p-6 sm:p-7 flex flex-col justify-between">
-          <div>
-            {/* Colorful category badge & Status indicator */}
-            <div className="flex flex-wrap items-center gap-2 mb-3.5">
-              <span className={`inline-flex items-center text-xs font-mono font-semibold tracking-wider uppercase px-3 py-1 rounded-full ${config.badge}`}>
-                {project.category}
-              </span>
-              {project.statusBadge && (
-                <span
-                  className={`inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full ${
-                    hasLive
-                      ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/35 shadow-sm shadow-emerald-500/20'
-                      : 'bg-amber-500/15 text-amber-300 border border-amber-400/40 shadow-sm shadow-amber-500/20'
-                  }`}
-                >
+          <div className="lg:col-span-7 p-6 sm:p-7 flex flex-col justify-between">
+            <div>
+              {/* Colorful category badge & Status indicator */}
+              <div className="flex flex-wrap items-center gap-2 mb-3.5">
+                <span className={`inline-flex items-center text-xs font-mono font-semibold tracking-wider uppercase px-3 py-1 rounded-full ${config.badge}`}>
+                  {project.category}
+                </span>
+                {project.statusBadge && (
                   <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      hasLive ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-ping'
+                    className={`inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full ${
+                      hasLive
+                        ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/35 shadow-sm shadow-emerald-500/20'
+                        : 'bg-amber-500/15 text-amber-300 border border-amber-400/40 shadow-sm shadow-amber-500/20'
                     }`}
-                  />
-                  <span>{project.statusBadge}</span>
-                </span>
-              )}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        hasLive ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-ping'
+                      }`}
+                    />
+                    <span>{project.statusBadge}</span>
+                  </span>
+                )}
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-heading mb-2.5 flex items-center gap-2">
+                <span>{project.title}</span>
+                {hasLive && (
+                  <span className="relative flex h-2.5 w-2.5 ml-1">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                  </span>
+                )}
+              </h3>
+              <p className="text-slate-300 text-sm leading-relaxed mb-5 font-sans">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-lg bg-surface-900 text-slate-200 text-xs font-mono font-medium border border-purple-500/25 transition-all duration-200 hover:border-pink-400 hover:text-pink-200 hover:bg-pink-500/15 shadow-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div className="space-y-2">
+                {project.keyFeatures.slice(0, 3).map((feat, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300">
+                    <span className="text-pink-400 font-mono font-bold mt-px shrink-0">›</span>
+                    <span className="leading-relaxed">{feat}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-heading mb-2.5 flex items-center gap-2">
-              <span>{project.title}</span>
-              {hasLive && (
-                <span className="relative flex h-2.5 w-2.5 ml-1">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-                </span>
-              )}
-            </h3>
-            <p className="text-slate-300 text-sm leading-relaxed mb-5 font-sans">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-5">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2.5 py-1 rounded-lg bg-surface-900 text-slate-200 text-xs font-mono font-medium border border-purple-500/25 transition-all duration-200 hover:border-pink-400 hover:text-pink-200 hover:bg-pink-500/15 shadow-sm"
+            <div className="flex flex-wrap items-center gap-3 mt-6 pt-5 border-t border-purple-500/20">
+              {hasGithub ? (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-semibold text-slate-200 hover:text-white bg-surface-900 hover:bg-surface-850 border border-purple-500/30 hover:border-pink-400 transition-all duration-200 hover:scale-105 cursor-pointer"
                 >
-                  {tech}
+                  <GithubIcon className="w-4 h-4 text-cyan-300" />
+                  <span>Source</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono text-slate-400 bg-surface-900/60 border border-purple-500/20">
+                  <GithubIcon className="w-3.5 h-3.5 opacity-40" />
+                  <span>Repo in progress</span>
                 </span>
-              ))}
+              )}
+              {hasLive ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white ${config.btnGradient} transition-all duration-200 shadow-md hover:scale-105 active:scale-95 cursor-pointer`}
+                >
+                  <ShinyText text="Live Demo" speed={2.5} />
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30 shadow-sm shadow-amber-500/15">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  <ShinyText text="Still Working On It" speed={3} />
+                </span>
+              )}
             </div>
-            <div className="space-y-2">
-              {project.keyFeatures.slice(0, 3).map((feat, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300">
-                  <span className="text-pink-400 font-mono font-bold mt-px shrink-0">›</span>
-                  <span className="leading-relaxed">{feat}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 mt-6 pt-5 border-t border-purple-500/20">
-            {hasGithub ? (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-semibold text-slate-200 hover:text-white bg-surface-900 hover:bg-surface-850 border border-purple-500/30 hover:border-pink-400 transition-all duration-200 hover:scale-105 cursor-pointer"
-              >
-                <GithubIcon className="w-4 h-4 text-cyan-300" />
-                <span>Source</span>
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono text-slate-400 bg-surface-900/60 border border-purple-500/20">
-                <GithubIcon className="w-3.5 h-3.5 opacity-40" />
-                <span>Repo in progress</span>
-              </span>
-            )}
-            {hasLive ? (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white ${config.btnGradient} transition-all duration-200 shadow-md hover:scale-105 active:scale-95 cursor-pointer`}
-              >
-                <span>Live Demo</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30 shadow-sm shadow-amber-500/15">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                <span>Still Working On It</span>
-              </span>
-            )}
           </div>
         </div>
       </div>
-    </div>
+    </TiltedCard>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollReveal } from '../effects/ScrollReveal';
+import { DecryptedText } from '../effects/DecryptedText';
 
 const SKILL_GROUPS = [
   {
@@ -57,7 +58,13 @@ const SkillGroup: React.FC<{
       </span>
       <span className="text-[11px] font-mono text-purple-400/40">—</span>
       <h3 className="text-base font-bold text-white tracking-tight font-heading">
-        {title}
+        <DecryptedText
+          text={title}
+          speed={35}
+          animateOn="view"
+          className="text-white"
+          encryptedClassName="text-cyan-400 font-mono"
+        />
       </h3>
     </div>
     <div className="flex flex-wrap gap-2.5">

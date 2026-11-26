@@ -3,6 +3,8 @@ import { GithubIcon, LinkedinIcon } from '../ui/Icons';
 import { ScrollReveal } from '../effects/ScrollReveal';
 import { ArrowUpRight, Sparkles, Mail, Copy, Check } from 'lucide-react';
 import { PERSONAL_INFO } from '../../data/portfolioData';
+import { Magnet } from '../effects/Magnet';
+import { ShinyText } from '../effects/ShinyText';
 
 const OPEN_TO = [
   { label: 'Hackathons', color: 'bg-pink-500' },
@@ -92,13 +94,15 @@ export const Contact: React.FC = () => {
                       )}
                     </button>
 
-                    <a
-                      href={`mailto:${PERSONAL_INFO.email}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-400 hover:to-cyan-400 transition-all duration-200 shadow-md shadow-pink-500/25 hover:scale-105 active:scale-95"
-                    >
-                      <span>Send Mail</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
+                    <Magnet magnetStrength={0.22}>
+                      <a
+                        href={`mailto:${PERSONAL_INFO.email}`}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 hover:from-pink-400 hover:to-cyan-400 transition-all duration-200 shadow-md shadow-pink-500/25 hover:scale-105 active:scale-95 cursor-pointer"
+                      >
+                        <ShinyText text="Send Mail" speed={2.5} />
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    </Magnet>
                   </div>
                 </div>
               </div>
@@ -124,26 +128,30 @@ export const Contact: React.FC = () => {
             {/* Social Buttons */}
             <ScrollReveal variant="spring-up" duration={800} delay={200}>
               <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href={PERSONAL_INFO.socials.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-hero-primary group"
-                >
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub Profile</span>
-                  <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                </a>
-                <a
-                  href={PERSONAL_INFO.socials.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-hero-secondary group"
-                >
-                  <LinkedinIcon className="w-4 h-4 text-cyan-400" />
-                  <span>LinkedIn Profile</span>
-                  <ArrowUpRight className="w-4 h-4 opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                </a>
+                <Magnet magnetStrength={0.25}>
+                  <a
+                    href={PERSONAL_INFO.socials.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-hero-primary group"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                    <span>GitHub Profile</span>
+                    <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                  </a>
+                </Magnet>
+                <Magnet magnetStrength={0.25}>
+                  <a
+                    href={PERSONAL_INFO.socials.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-hero-secondary group"
+                  >
+                    <LinkedinIcon className="w-4 h-4 text-cyan-400" />
+                    <span>LinkedIn Profile</span>
+                    <ArrowUpRight className="w-4 h-4 opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                  </a>
+                </Magnet>
               </div>
             </ScrollReveal>
           </div>
