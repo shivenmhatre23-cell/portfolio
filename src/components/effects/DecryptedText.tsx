@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 interface DecryptedTextProps {
   text: string;
@@ -31,7 +31,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
   const intervalRef = useRef<number | null>(null);
   const hasAnimated = useRef(false);
 
-  const startDecryption = () => {
+  const startDecryption = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     setIsDecrypted(false);
 
@@ -77,7 +77,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
         setIsDecrypted(true);
       }
     }, speed);
-  };
+  }, [characters, maxIterations, revealDirection, sequential, speed, text]);
 
   useEffect(() => {
     if (animateOn === 'view') {
@@ -98,7 +98,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
         if (intervalRef.current) clearInterval(intervalRef.current);
       };
     }
-  }, [text, animateOn]);
+  }, [animateOn, startDecryption]);
 
   const handleMouseEnter = () => {
     if (animateOn === 'hover') {
